@@ -1,6 +1,6 @@
 import package Lists;
 
-package theQ;
+package queue;
 public class Queue {
     private int maxSize;
     private int[] queueArray;

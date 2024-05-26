@@ -1,14 +1,14 @@
-package stacks;
+package stack;
 
 public class Stack {
-    private int maxSize;
     private int[] stackArray;
     private int top;
+    private int size;
 
     // Constructor to initialize the stack
     public Stack(int size) {
-        maxSize = size;
-        stackArray = new int[maxSize];
+        this.size = size;
+        stackArray = new int[size];
         top = -1; // Stack is initially empty
     }
 
@@ -18,7 +18,8 @@ public class Stack {
             System.out.println("Stack overflow");
             return;
         }
-        stackArray[++top] = num;
+        top++;
+        stackArray[top] = num;
         System.out.println("'" + num + "' has been pushed onto the stack.");
     }
 
@@ -58,43 +59,30 @@ public class Stack {
     // Method to display the elements of the stack
     public void display() {
         System.out.println("Elements in the stack:");
-        for (int i = top; i >= 0; i--) {
+        for (int i = size-1; i >= 0; i--) {
             System.out.println(stackArray[i]);
         }
     }
 
     // Method to check if the stack is empty
     public boolean isEmpty() {
-        return (top == -1);
+        return (top < 0);
     }
 
     // Method to check if the stack is full
     public boolean isFull() {
-        return (top == maxSize - 1);
+        return (top > size - 1);
     }
 
-    public static void main(String[] args) {
-        // Create a stack with a maximum size of 5
-        Stack stack = new Stack(10);
-
-        // Push elements onto the stack
-        stack.push(6);
-        stack.push(5);
-        stack.push(4);
-        stack.push(3);
-        stack.push(2);
-        stack.push(1);
-        
-        // Display the stack
-        stack.display();
-
-        // Peek at the top element
-        System.out.println("Top element: " + stack.peek());
-        stack.pop();
-        stack.pop();
-
-        // Display the stack after popping elements
-        stack.display();
-        System.out.println("Top element: " + stack.peek());
+    boolean palindrome(String word){
+        for(int i = 0; i<word.length(); i++){
+            push(word.charAt(i));
+        }
+            String str = " ";
+            for(int i = 0; i<word.length(); i++){
+                str = str + pop();
+            }
+            return word.equalsIgnoreCase(str);
+        }
     }
-}
+

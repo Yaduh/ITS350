@@ -1,4 +1,4 @@
-package theQ;
+package queue;
 
 public class QueueLl {
         private Node front;
