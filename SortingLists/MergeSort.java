@@ -1,38 +1,44 @@
-package SortingLists;
+package sortinglists;
+
+import java.util.Arrays;
 
 public class MergeSort {
-    void mergeSort(int [] position){
-        int length = position.length;
-        int midPoint = position.length/2;
-        int leftSize = midPoint;
-        int rightSize = length-midPoint;
-        int leftP[] = new int [midPoint];
-        int rightP[] = new int [length-midPoint];
-    
-        for (int i = 0; i<leftP.length; i++){
-            leftP[i] = position[i];
+    void mergeSort(int list[]){
+        int length = list.length;
+        if(length<2){
+            return;
         }
-        for(int i = 0; i<rightP.length; i++){
-            rightP[i]=position[i];
-
+        int mid = length/2;
+        int leftP[]=new int[mid];
+        int rightP[]=new int[length-mid];
+        for(int i=0; i<leftP.length; i++){
+            leftP[i] = list[i];
         }
+        for(int i=mid; i<length; i++){
+            rightP[i-mid] = list[i];
+        }
+        // recursive case
+        mergeSort(leftP);
+        mergeSort(rightP);
+        //Combining
+        merge(list, leftP, rightP);
+    }
         void merge(int sorted[], int left[], int right[]){
-            int i =0, k=0, j=0;
+            int i=0, j=0, k=0;
             while(i<left.length && j<right.length){
                 if(left[i] < right[j]){
                     sorted[k] = left[i];
                     i++;
                 }else{
-                    sorted[k] = left[i];
-                    i++;
-                }
                     sorted[k] = right[j];
                     j++;
                 }
                 k++;
             }
             while(i<left.length){
-
+                sorted[k] = left[i];
+                i++;
+                k++;
             }
             while(j<right.length){
                 sorted[k] = right[j];
@@ -40,9 +46,11 @@ public class MergeSort {
                 k++;
             }
         }
-        }
     
     public static void main(String[] args) {
-        
+        MergeSort ob = new MergeSort();
+        int list[] = {40, 2, 0, 1, 9, 6, 0};
+        ob.mergeSort(list);
+        System.out.println(Arrays.toString(list));
     }
-
+}

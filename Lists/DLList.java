@@ -32,23 +32,6 @@ public class DLList {
             size++;
         }
     }
-    void deleteL(){
-        if(tail == head){
-            return;
-        }
-        tail = tail.prev;
-        tail.next = null;
-        size--;
-    }
-    void deleteF(){
-        if(head == tail){ // if theres one element in the list
-            return; //return nothing
-        }
-        head = head.next; // [head(->node), (head<-)node] | head = node
-        head.prev = null; // [null , (head<-)head]
-        size--;
-    }
-
 
     void addAt(int data, int index){
         Node node = new Node(data);
@@ -79,6 +62,51 @@ public class DLList {
         node.prev = tempHead;
         size++;
     }
+
+    void deleteL(){
+        if(tail == head){
+            return;
+        }
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+    }
+    void deleteF(){
+        if(head == tail){ // if theres one element in the list
+            return; //return nothing
+        }
+        head = head.next; // [head(->node), (head<-)node] | head = node
+        head.prev = null; // [null , (head<-)head]
+        size--;
+    }
+    void deleteAt(int index) {
+        if (index < 1 || index > size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        if (index == 1) {
+            deleteF();
+            return;
+        }
+
+        if (index == size) {
+            deleteL();
+            return;
+        }
+
+        int count = 1;
+        Node tempHead = head;
+        while (count < index) {
+            tempHead = tempHead.next;
+            count++;
+        }
+
+        tempHead.prev.next = tempHead.next;
+        tempHead.next.prev = tempHead.prev;
+        size--;
+    }
+
+    
 
     void rDisplay(){ //reverse display
         if (head == null){

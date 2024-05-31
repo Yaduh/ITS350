@@ -1,11 +1,11 @@
 package BTS;
 
-class NodeTree {
-    int val;
-    TreeNode left;
-    TreeNode right;
+class TreeNode {
+    int data;
+    TreeNode leftChild;
+    TreeNode rightChild;
 
-    public TreeNode(int val) {
-        this.val = val;
+    public TreeNode(int data) {
+        this.data = data;
     }
 }

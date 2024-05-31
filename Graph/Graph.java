@@ -1,33 +1,47 @@
 class Graph
 {
-private final int size = 20;
-private Vertex vertexList[]; // array of vertices
-private int adjMat[][]; // adjacency matrix
-private int vertcies; // current number of vertices
-public Graph(){
-vertexList = new Vertex[size];
-// adjacency matrix
-adjMat = new int[size][size];
-} 
+    Vertex vertList[];
+    int adjM[][];
+    int vertices;
+    public Graph(int size){
+       vertList = new Vertex[size];
+       adjM = new int[size][size];
+       
+   }
+   void addVert(Vertex v){
+       if(vertices < vertList.length){
+           vertList[vertices] = v;
+           vertices++;
+       }
+   }
+   void addEdge(int from, int to){
+       if(from < vertices && to < vertices){
+           adjM[from][to] = 1;
+           adjM[to][from] = 1; //undirected graph
+       }
+   }
+   void displayAdjM(){
+       //cols
+       for(int i=0; i<vertices; i++){
+           //rows
+           for(int j=0; j<vertices; j++){
+               System.out.print(" "+adjM[i][j]);
+           }
+           System.out.println(" ");
+       }
+       System.out.println();
+   }
 
-public void addVertex(Vertex v) // argument is label
-{
-    if(vertcies < vertexList.length){
-        vertexList[vertcies++] = v;
-    }
-}
-public void addEdge(int from, int to)
-{
-adjMat[from][to] = 1;
-adjMat[to][from] = 1;
-}
-public void displayVertex(int [][]aMat)
-{
-    for(int i=0; i<adjMat.length; i++){
-        for(int j=0; j<adjMat[i].length; i++){
-        System.out.print(adjMat[i][j] + " ");
-    }
-    }
-    System.out.println();
-}
+    public static void main(String args[]){
+        Graph g = new Graph(10);
+        g.addVert(new Vertex('A')); //0
+        g.addVert(new Vertex('B')); //1
+        g.addVert(new Vertex('C')); //2
+        g.addVert(new Vertex('D')); //3
+        g.addEdge(1, 0);
+        g.addEdge(1, 3);
+        g.addEdge(0, 3);
+        g.addEdge(0, 2);
+        g.displayAdjM();
+        }   
 } 
