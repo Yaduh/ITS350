@@ -1,66 +1,52 @@
 package queue;
 
 public class Queue {
-    int queue[];
-    int front;
-    int rear;
-    int count;
-    public Queue(int size){
-        queue = new int[size];
-        front = -1;
-        rear = -1;
-    }
+    Node front;
+    Node rear;
+    int length;
+    
     void enqueue(int element){
+        Node node = new Node(element);
         if(isEmpty()){
-            front=0;
-        }
-        if(isFull()){
-            System.out.println("Full!");
+            front=rear=node;
         }else{
-            rear = (rear+1)%queue.length;
-            queue[rear] = element;
-            count++;
+            rear.next = node;
+            rear = node;  
         }
+        length++;
     }
     boolean isEmpty(){
-        return count==0;
-    }
-    boolean isFull(){
-        return count==queue.length;
+        return front==null;
     }
     public int dequeue(){
-        if(isEmpty()){
-            System.out.println("Empty");
-        }else{
-            int data = queue[front];
-            queue[front] = 0;
-            front = (front+1)%queue.length;
-            count--;
-            return data;
-        }
-        return -1;
+       if(isEmpty()){
+           System.out.println("Empty!");
+           return -1;
+       } else{
+           int data = front.data;
+           front = front.next;
+           length--;
+           return data;
+       }
     }
     void display(){
-        for(int i=0; i<queue.length; i++)
-            System.out.println(queue[i]);
+        if(!isEmpty()){
+            Node temp = front;
+            while(temp!=null){
+                System.out.println(temp.data);
+                temp = temp.next;
+            }
+        }
     }
     public static void main(String args[]){
-        Queue queue = new Queue(4);
-        queue.enqueue(12);
-        queue.enqueue(1);
-        queue.enqueue(5);
-        queue.display();
-        System.out.println("------------------------------");
-        queue.dequeue();
-        queue.display();
-        System.out.println("------------------------------");
+        Queue queue = new Queue();
         queue.enqueue(10);
+        queue.enqueue(12);
+        queue.enqueue(4);
         queue.display();
-        System.out.println("------------------------------");
-        queue.enqueue(3);
-        queue.display();
-        System.out.println("------------------------------");
-        queue.dequeue();
+        System.out.println("***************");
+        int data = queue.dequeue();
+        
         queue.display();
     }
 }

@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class MergeSort {
     void mergeSort(int list[]){
         int length = list.length;
-        if(length<2){
+        
+        if(length<2){ // Base case
             return;
         }
         int mid = length/2;

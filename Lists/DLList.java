@@ -88,14 +88,14 @@ public class DLList {
         }
 
         int count = 1;
-        Node tempHead = head;
+        Node temp = head;
         while (count < index) {
-            tempHead = tempHead.next;
+            temp = temp.next;
             count++;
         }
 
-        tempHead.prev.next = tempHead.next;
-        tempHead.next.prev = tempHead.prev;
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
         size--;
     }
 

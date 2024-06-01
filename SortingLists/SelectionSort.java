@@ -5,27 +5,28 @@ import java.util.Arrays;
 class SelectionSort{
     public static void selection(int list[]){
        for(int i=0; i<list.length-1; i++){
-           int min = i;
-           for(int j = i+1; j<list.length; j++){
-               if(list[j]<list[min]){
-                   min = j;
+           int minimumSwapPos = i;
+           for(int j = i+1; j<list.length; j++){ // i+1: skip chekcing sorted elements 
+               if(list[j]<list[minimumSwapPos]){
+                   minimumSwapPos = j;
                }
-           }if(min!=i)
-           BubbleSort.swap(list, min, i);
+           }
+           if(minimumSwapPos!=i)
+                BubbleSort.swap(list, minimumSwapPos, i);
        }
     }
     public static void selection(String list[]){
         for(int i=0; i<list.length-1; i++){
-            int min = i;
+            int minimumSwapPos = i;
             for(int j=i+1; j<list.length; j++){
-                if(list[j].compareToIgnoreCase(list[min])<0){
-                    min = j;
+                if(list[j].compareToIgnoreCase(list[minimumSwapPos])<0){
+                    minimumSwapPos = j;
                 }
             }
-            if(list[i].compareToIgnoreCase(list[min])!=0){
+            if(list[i].compareToIgnoreCase(list[minimumSwapPos])!=0){
                 String temp = list[i];
-                list[i] = list[min];
-                list[min] =temp;
+                list[i] = list[minimumSwapPos];
+                list[minimumSwapPos] =temp;
             }
         }
     }
