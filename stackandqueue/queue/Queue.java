@@ -5,7 +5,7 @@ public class Queue {
     Node rear;
     int length;
     
-    void enqueue(int element){
+    public void enqueue(int element){
         Node node = new Node(element);
         if(isEmpty()){
             front=rear=node;
@@ -15,7 +15,7 @@ public class Queue {
         }
         length++;
     }
-    boolean isEmpty(){
+    public boolean isEmpty(){
         return front==null;
     }
     public int dequeue(){
