@@ -1,4 +1,3 @@
-package stack;
 
 public class IntStack {
     private int[] stackArray;

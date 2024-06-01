@@ -2,13 +2,11 @@ package Lists;
 public class DLList {
     Node tail;
     Node head;
-    int size = 0;
+    int size;
     void addF(int data){ //add first
         Node node = new Node(data);
         if(head == null){
             head = tail = node; //head = new node, tail = new node;
-            head = null;
-            tail = null;
             size++;
         }
         else{
@@ -35,11 +33,6 @@ public class DLList {
 
     void addAt(int data, int index){
         Node node = new Node(data);
-        if(head==null){
-            head = tail = node; // If the list is empty, the new node becomes both head and tail
-            size++;
-            return;
-            }
         if(index == 1){
             addF(data);
             return;
@@ -126,9 +119,19 @@ public class DLList {
         list.addF(6);
         list.addF(1);
         list.addL(9);
-        list.addAt(8,5);
-        list.deleteF();
-        list.deleteL();
-        list.rDisplay();
+        list.addAt(8,2);
+        list.display();
+    }
+
+    private void display() {
+        if (head == null){
+            System.out.println("Empty");
+        }else{
+            Node current = head; //start from head (make a copy of data in tail)
+            while(current != null){
+                System.out.print(current.data + " ");
+                current = current.next; //iterate through the copy of the list
+            }
+        }
     }
 }

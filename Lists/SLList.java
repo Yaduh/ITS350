@@ -10,20 +10,27 @@ public class SLList{
             if (head == null){ // if list empty -> newNode object is both head and tail
                 head = tail = newNode;
                 return;
+            }else{
+                // initial state: [CURRENT HEAD][NODE][TAIL]
+                newNode.next = head; // point the new node to the current head
+                // [NEW NODE]->[CURRENT HEAD][NODE][TAIL]
+                
+                head = newNode; // assign the new head
+                // the current head is not over written but is now the second node in the list
+                // [HEAD][NODE][NODE][TAIL]
             }
-                newNode.next = head;
-                head = newNode;
             size++;
         }
 
         void addLast(int data){
+                // initial state: [HEAD][NODE][CURRENT TAIL]
             Node newNode = new Node(data);
             if (head == null){
                 head = tail = newNode;
             }
             else{
-                tail.next = newNode;
-                tail = newNode;
+                tail.next = newNode; // point the tail to the new node
+                tail = newNode; // assign the tail to the new nodes position
             }
             size++;
         }
@@ -33,7 +40,7 @@ public class SLList{
                 System.out.println("Enter a valid position");
                 return;
             }
-            if (pos == 1) {
+            if (pos == 1) { 
                 addFirst(data);
                 return;
             }
@@ -44,12 +51,17 @@ public class SLList{
             }
     
             Node newNode = new Node(data);
-            Node temp = head;
-            for (int i = 1; i < pos - 1; i++) {
+            Node temp = head; // traversal node
+            
+            // Initial state: [Head][Node: 2][Node: 3][Tail]
+            // Ex: insert a node at pos 3
+            
+            for (int i = 1; i < pos - 1; i++) { // move to the correct position
                 temp = temp.next;
             }
-            newNode.next = temp.next;
-            temp.next = newNode;
+            // temp is now "Node: 2"
+            newNode.next = temp.next; // set the new node to point to Node: 2's next node  
+            temp.next = newNode; // point node: 2 to the new node.
             size++;
         }
     
@@ -57,7 +69,7 @@ public class SLList{
             if(head==null){
                 System.out.println("Empty");
             }else{
-                head = head.next;
+                head = head.next; // assign head to the next node
                 size--;
             }
         }
@@ -69,12 +81,12 @@ public class SLList{
             if (head == tail) { // Only one element in the list
                 head = tail = null;
             } else {
-                Node temp = head;
-                while (temp.next != tail) {
+                Node temp = head; // traversal node
+                while (temp.next != tail) { // traverse through the list until temp points to tail
                     temp = temp.next;
                 }
-                temp.next = null;
-                tail = temp;
+                temp.next = null; // set pointer to null
+                tail = temp; // assign new tail
             }
             size--;
         }
@@ -93,12 +105,14 @@ public class SLList{
                 deleteLast();
                 return;
             }
-    
+            // Initial state: [Head][Node: 2][Node: 3][Tail]
+            // Ex: delete the node at pos 2
             Node temp = head;
             for (int i = 1; i < pos - 1; i++) {
                 temp = temp.next;
             }
-            temp.next = temp.next.next;
+            // temp = [head]
+            temp.next = temp.next.next; // point temp node to the node thats after the deleted node
             size--;
         }
     
@@ -110,6 +124,7 @@ public class SLList{
             }
             System.out.println();
         }
+
         public static void main(String args[]) {
             SLList list = new SLList();
             list.display();
