@@ -33,7 +33,7 @@ public class SeperateChaning{
             for(int i=0; i<hashT.length; i++){
                 if(hashT[i] != null){
                     for(Entry e:hashT[i]){
-                        System.out.print(e.key +"-->"+ e.val +" ");
+                        System.out.println(e.key +"-->"+ e.val +" ");
                     }
                     System.out.println();
                 }else

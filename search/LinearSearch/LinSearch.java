@@ -1,4 +1,4 @@
-package LinearSearch;
+package search.LinearSearch;
 import Lists.*;
 public class LinSearch{
 

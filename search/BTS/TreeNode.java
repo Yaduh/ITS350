@@ -1,4 +1,4 @@
-package BTS;
+package search.BTS;
 
 class TreeNode {
     int data;
